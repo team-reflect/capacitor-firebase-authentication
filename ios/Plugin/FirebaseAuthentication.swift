@@ -93,10 +93,16 @@ import FirebaseAuth
             guard let savedCall = self.savedCall else {
                 return
             }
+            
             let user = self.getCurrentUser()
             let userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user)
+            
+            let credentialResult = FirebaseAuthenticationHelper.createCredentialResultFromFirebaseCredential(credential)
+            
             var result = JSObject()
             result["user"] = userResult
+            result["credential"] = credentialResult
+            
             savedCall.resolve(result)
         }
     }
